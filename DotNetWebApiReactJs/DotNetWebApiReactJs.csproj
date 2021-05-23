@@ -13,5 +13,11 @@
     <Folder Include="Photos\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="UI\ReactJS\employeemanagement-app\src\App - Copy.test.js">
+      <DependentUpon>App.test.js</DependentUpon>
+    </None>
+  </ItemGroup>
+
 
 </Project>
