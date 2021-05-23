@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <Folder Include="Photos\" />
+    <Folder Include="UI\ReactJS\" />
   </ItemGroup>
 
 
