@@ -9,11 +9,12 @@ export class Employee extends Component {
 
     constructor(props) {
         super(props);
+        this.ApiUrl = "http://localhost:38856/Api/";
         this.state = { emps: [], addModalShow: false, editModalShow: false }
     }
 
     refreshList() {
-        fetch(process.env.REACT_APP_API + 'employee')
+        fetch(this.ApiUrl + 'employee')
             .then(response => response.json())
             .then(data => {
                 this.setState({ emps: data });
@@ -30,7 +31,7 @@ export class Employee extends Component {
 
     deleteEmp(empid) {
         if (window.confirm('Are you sure?')) {
-            fetch(process.env.REACT_APP_API + 'employee/' + empid, {
+            fetch(this.ApiUrl + 'employee/' + empid, {
                 method: 'DELETE',
                 header: {
                     'Accept': 'application/json',

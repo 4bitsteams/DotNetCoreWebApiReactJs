@@ -4,19 +4,19 @@ import { Modal, Button, Row, Col, Form } from 'react-bootstrap';
 export class AddDepModal extends Component {
     constructor(props) {
         super(props);
+        this.ApiUrl = "http://localhost:38856/Api/";
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleSubmit(event) {
         event.preventDefault();
-        fetch(process.env.REACT_APP_API + 'department', {
+        fetch(this.ApiUrl + 'department', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                DepartmentId: null,
                 DepartmentName: event.target.DepartmentName.value
             })
         })

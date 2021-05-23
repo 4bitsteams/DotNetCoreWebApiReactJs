@@ -4,16 +4,18 @@ import { Modal, Button, Row, Col, Form, Image } from 'react-bootstrap';
 export class AddEmpModal extends Component {
     constructor(props) {
         super(props);
+        this.ApiUrl = "http://localhost:38856/Api/";
+        this.PhotoPath = "http://localhost:38856/Photos/";
         this.state = { deps: [] };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleFileSelected = this.handleFileSelected.bind(this);
     }
 
     photofilename = "anonymous.png";
-    imagesrc = process.env.REACT_APP_PHOTOPATH + this.photofilename;
+    imagesrc = this.PhotoPath + this.photofilename;
 
     componentDidMount() {
-        fetch(process.env.REACT_APP_API + 'department')
+        fetch(this.ApiUrl + 'department')
             .then(response => response.json())
             .then(data => {
                 this.setState({ deps: data });
@@ -22,14 +24,13 @@ export class AddEmpModal extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        fetch(process.env.REACT_APP_API + 'employee', {
+        fetch(this.ApiUrl + 'employee', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                EmployeeId: null,
                 EmployeeName: event.target.EmployeeName.value,
                 Department: event.target.Department.value,
                 DateOfJoining: event.target.DateOfJoining.value,
@@ -57,7 +58,7 @@ export class AddEmpModal extends Component {
             event.target.files[0].name
         );
 
-        fetch(process.env.REACT_APP_API + 'Employee/SaveFile', {
+        fetch(this.ApiUrl + 'Employee/SaveFile', {
             method: 'POST',
             body: formData
         })

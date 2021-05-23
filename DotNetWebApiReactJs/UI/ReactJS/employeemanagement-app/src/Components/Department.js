@@ -6,14 +6,14 @@ import { AddDepModal } from './AddDepModal';
 import { EditDepModal } from './EditDepModal';
 
 export class Department extends Component {
-
     constructor(props) {
         super(props);
+        this.ApiUrl = "http://localhost:38856/Api/";
         this.state = { deps: [], addModalShow: false, editModalShow: false }
     }
 
     refreshList() {
-        fetch(process.env.REACT_APP_API + 'department')
+        fetch(this.ApiUrl + 'department')
             .then(response => response.json())
             .then(data => {
                 this.setState({ deps: data });
@@ -30,7 +30,7 @@ export class Department extends Component {
 
     deleteDep(depid) {
         if (window.confirm('Are you sure?')) {
-            fetch(process.env.REACT_APP_API + 'department/' + depid, {
+            fetch(this.ApiUrl + 'department/' + depid, {
                 method: 'DELETE',
                 header: {
                     'Accept': 'application/json',
